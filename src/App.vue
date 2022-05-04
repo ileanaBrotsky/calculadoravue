@@ -1,26 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+ <div>
+  <Fondo_movil/>
+  <Calculadora_prueba />
+   </div> 
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Calculadora_prueba from './components/Calculadora_prueba';
+import Fondo_movil from './components/Fondo_movil';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Calculadora_prueba,
+    Fondo_movil,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+
 </style>
