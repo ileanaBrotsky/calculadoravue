@@ -9,13 +9,8 @@
     <div class="botonera">
               <button class='borrar' @click="borrar()">borrar</button>
               <button @click="haceCuentaPorcentaje(' % ')">%</button>
-            
-              
-            
               <button @click="haceCuenta(' / ')">/</button>
-            
               <button @click="haceCuenta('7')">7</button>
-             
               <button @click="haceCuenta('8')">8</button>
               <button @click="haceCuenta('9')">9</button>
               <button @click="haceCuenta(' * ')">*</button>
@@ -49,16 +44,32 @@
 export default {
     setup(){
     let visor= ref('');
+    let ultimoValor= ref('');
    
-    
-    
     const tomarValor=(valor)=>{
-    visor.value=visor.value +valor;
-    
-    }
+     
+      if(ultimoValor.value !=' ='){
+        visor.value=visor.value +valor;
+        ultimoValor.value=valor;
+      }
+      else{ 
+        // ||valor===' + ' || valor===' * ' || valor===' / ' || valor===' % '
+        if(valor===' - ' ){
+          visor.value=visor.value +valor;
+           ultimoValor.value= 0;
+        }
+        else{
+          visor.value=valor
+           ultimoValor.value= 0;
+        }
+          
+        
+      }
+        console.log(ultimoValor);
+     }
 
     const haceCuenta=(valor)=>{
-      visor.value=visor.value +valor;
+      tomarValor(valor);
      
         let editor =  visor.value.split(' ') ;
      
@@ -68,7 +79,7 @@ export default {
           let num2=Number(editor[2]);
           let resultado= eval(num1+ signo + num2);
           if(valor===" ="){
-          visor.value= resultado;
+          visor.value= resultado + ' ';
           }
           else{
            visor.value= resultado + valor;
@@ -133,7 +144,7 @@ h2{
 }
 .card{
   width: 250px;
-   min-width: 250px;
+  
     margin:auto;
     background: rgba(166, 176, 155, 0.6);
     padding:20px;
@@ -188,13 +199,5 @@ button:hover{
    background:aquamarine;
 }
 
-/*para que sea responsive, si el máx es hasta 480px en este caso, se va a realizar lo que está a continuación
-si se pasa de ese tamaño, no se cumple lo que sigue*/
-@media(max-width:480px){
-
-    .card{
-            width:100%;
-        }
-}
 
 </style>
